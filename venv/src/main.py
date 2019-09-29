@@ -16,7 +16,7 @@ vMax = 0
 vMin = 255
 default = True
 cont =0
-indexFolder=0
+
 showContour = False
 showImg = False
 
@@ -32,6 +32,7 @@ def readingImages():
 			img = cv2.imread(filename)
 			if (showImg):
 				cv2.imshow("Imagem "+str(indexFile), img)
+
 			# segmentacao a partir do ROI
 			imgSegmented = segmentationHand(img)
 			# encontra o maior contorno
@@ -42,16 +43,21 @@ def readingImages():
 			fourier.writeDataFourier(fourier.coeffFourier(largest), folder)
 			# encontra os momentos de Hu e escreve no arff
 			hu.writeDataHu(hu.huMoments(imgSegmented), folder)
+
 			global cont
 			cont= indexFile
-			key = cv2.waitKey(1)
-			if key == 27:
-				break
+			print(".")
+			# key = cv2.waitKey(1)
+			# if key == 27:
+			# 	break
 
 	fourier.closeArff()
 	cadeia.closeArff()
 	hu.closeArff()
 
+	print("DONE")
+
+# read the first image of the first folder
 def readImage():
 	filename = listdir(path+folders[0])
 	img = cv2.imread(path+folders[0]+"/"+filename[0])
@@ -69,6 +75,7 @@ def readImage():
 	# arffFourier.close()
 	hu.closeArff()
 
+# select the region of interest point
 def selectROI():
 	#get first image to select ROI
 	imgROI = cv2.imread(path+files[2])
@@ -81,7 +88,7 @@ def selectROI():
 	fourier.writeDataFourier(fourier.coeffFourier(largest))
 	fourier.arffFourier.close()
 
-#detect hand colors from ROI
+# detect hand colors from ROI
 def detectHandColor(imgROI, rectROI):
 	h = 0
 	s = 0
@@ -92,8 +99,8 @@ def detectHandColor(imgROI, rectROI):
 	i = rectROI[0]
 	j = rectROI[1]
 	
-	while(i < rectROI[0] + rectROI[2] and i < cols):
-		while (j < rectROI[1] + rectROI[3] and j < rows):
+	while i < rectROI[0] + rectROI[2] and i < cols:
+		while j < rectROI[1] + rectROI[3] and j < rows:
 			h = imgHSV[j, i, 0]
 			s = imgHSV[j, i, 1]
 			v = imgHSV[j, i, 2]
@@ -113,20 +120,13 @@ def detectHandColor(imgROI, rectROI):
 			j+=1
 		i+=1
 
-	print(hMax, end = "\n")
-	print(hMin, end = "\n")
-	print(sMax, end ="\n")
-	print(sMin, end ="\n")
-	print(vMax, end ="\n")
-	print(vMin, end ="\n")
-	
-#segment the image from the color detected
+# segment the image from the color detected
 def segmentationHand(img):
 	imgBlur = cv2.blur(img, (5,5))
 	imgHSV = cv2.cvtColor(imgBlur, cv2.COLOR_BGR2HSV)
 	# cv2.imshow("hsv",imgHSV)
 
-	if (default):
+	if default:
 		# imgSegLimiar = cv2.inRange(imgHSV, np.array([0, 3, 64]), np.array([177, 85, 205])) #imagens-mao
 		imgSegLimiar = cv2.inRange(imgHSV, np.array([0, 0, 0]), np.array([165, 255, 62])) #mao-preto
 	else:
@@ -137,34 +137,32 @@ def segmentationHand(img):
 	_,imgSegLimiar = cv2.threshold(imgSegLimiar, 0, 255, cv2.THRESH_BINARY_INV)
 
 	# cv2.imshow("tresh", imgSegLimiar)
-	tam = (9,9)
-	kernelErode = np.ones(tam, np.uint8)
+	mask = (9,9)
+	kernelErode = np.ones(mask, np.uint8)
 	imgDilateErode = cv2.erode(imgSegLimiar, kernelErode, iterations= 1)
 
-	kernelDilate = np.ones(tam,np.uint8)
+	kernelDilate = np.ones(mask,np.uint8)
 	imgDilate = cv2.dilate(imgDilateErode,kernelDilate,iterations = 1)
 
 	# cv2.imshow("DilateErode", imgDilate)
 
 	return imgDilate
 
-#find the largest image segmentation contour
+# find the largest image segmentation contour
 def largestContour(img):
 	imgCanny = cv2.Canny(img, 0, 255, 3)
 
-	contours1 = cv2.findContours(imgCanny, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[0]
+	contoursTemp = cv2.findContours(imgCanny, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[0]
 
-	mask1 = np.zeros(img.shape, np.uint8)
-	cv2.drawContours(mask1, contours1, -1, 255, -1)
-	# cv2.imshow("antes"+str(cont), mask1)
-	tam = (3, 3)
+	imgTemp = np.zeros(img.shape, np.uint8)
+	cv2.drawContours(imgTemp, contoursTemp, -1, 255, -1)
+	# cv2.imshow("antes"+str(cont), imgTemp)
 
-	kernelDilate = np.ones(tam, np.uint8)
-	imgDilate = cv2.dilate(mask1, kernelDilate, iterations=1)
-	kernelErode = np.ones(tam, np.uint8)
+	mask = (3, 3)
+	kernelDilate = np.ones(mask, np.uint8)
+	imgDilate = cv2.dilate(imgTemp, kernelDilate, iterations=1)
+	kernelErode = np.ones(mask, np.uint8)
 	imgDilateErode = cv2.erode(imgDilate, kernelErode, iterations=1)
-	# cv2.imshow("dilateerode"+str(cont),imgDilateErode)
-	imgCanny = cv2.Canny(imgDilateErode, 0, 255, 3)
 
 	contours = cv2.findContours(imgDilateErode, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[0]
 
@@ -173,9 +171,11 @@ def largestContour(img):
 		if cnt.size > largest.size:
 			largest = cnt
 
-	mask = np.zeros(img.shape, np.uint8)
-	cv2.drawContours(mask, largest, -1, 255, -1)
-	cv2.imshow("Result"+str(cont), mask)
+	imgTemp = np.zeros(img.shape, np.uint8)
+	cv2.drawContours(imgTemp, largest, -1, 255, -1)
+
+	if showContour:
+		cv2.imshow("Result"+str(cont), imgTemp)
 
 	return largest
 
@@ -185,7 +185,6 @@ if __name__ == '__main__' :
 		readingImages()
 	else:
 		selectROI()
-		
 
 	while(True):
 		key = cv2.waitKey(1)

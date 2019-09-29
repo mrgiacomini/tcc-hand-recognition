@@ -1,0 +1,5 @@
+./idea.*
+./venv/_pycahce_
+./venv/Include
+./venv/Lib
+./venv/Scripts
