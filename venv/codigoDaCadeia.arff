@@ -1,0 +1,92 @@
+@relation cadeia
+
+@ATTRIBUTE h0 NUMERIC
+@ATTRIBUTE h1 NUMERIC
+@ATTRIBUTE h2 NUMERIC
+@ATTRIBUTE h3 NUMERIC
+@ATTRIBUTE h4 NUMERIC
+@ATTRIBUTE h5 NUMERIC
+@ATTRIBUTE h6 NUMERIC
+@ATTRIBUTE class {aberta-dorso ,aberta-palma ,fechada-dorso}
+@data
+67 , 54 , 676 , 190 , 75 , 52 , 671 , aberta-dorso
+67 , 54 , 676 , 190 , 75 , 52 , 671 , aberta-dorso
+91 , 126 , 1401 , 365 , 97 , 123 , 1400 , aberta-dorso
+91 , 126 , 1401 , 365 , 97 , 123 , 1400 , aberta-dorso
+72 , 62 , 1066 , 248 , 81 , 57 , 1066 , aberta-dorso
+72 , 62 , 1066 , 248 , 81 , 57 , 1066 , aberta-dorso
+98 , 203 , 948 , 211 , 100 , 202 , 947 , aberta-dorso
+98 , 203 , 948 , 211 , 100 , 202 , 947 , aberta-dorso
+98 , 188 , 992 , 313 , 101 , 187 , 990 , aberta-dorso
+98 , 188 , 992 , 313 , 101 , 187 , 990 , aberta-dorso
+66 , 83 , 1058 , 227 , 72 , 80 , 1057 , aberta-dorso
+66 , 83 , 1058 , 227 , 72 , 80 , 1057 , aberta-dorso
+64 , 70 , 877 , 170 , 72 , 67 , 874 , aberta-dorso
+64 , 70 , 877 , 170 , 72 , 67 , 874 , aberta-dorso
+68 , 71 , 804 , 164 , 74 , 70 , 799 , aberta-dorso
+68 , 71 , 804 , 164 , 74 , 70 , 799 , aberta-dorso
+94 , 196 , 992 , 299 , 96 , 196 , 989 , aberta-dorso
+94 , 196 , 992 , 299 , 96 , 196 , 989 , aberta-dorso
+63 , 69 , 612 , 151 , 65 , 70 , 607 , aberta-dorso
+63 , 69 , 612 , 151 , 65 , 70 , 607 , aberta-dorso
+78 , 48 , 501 , 241 , 79 , 46 , 503 , aberta-dorso
+78 , 48 , 501 , 241 , 79 , 46 , 503 , aberta-dorso
+42 , 76 , 751 , 258 , 46 , 74 , 750 , aberta-dorso
+42 , 76 , 751 , 258 , 46 , 74 , 750 , aberta-dorso
+40 , 93 , 937 , 268 , 49 , 89 , 935 , aberta-dorso
+40 , 93 , 937 , 268 , 49 , 89 , 935 , aberta-dorso
+50 , 122 , 1034 , 248 , 58 , 119 , 1031 , aberta-dorso
+50 , 122 , 1034 , 248 , 58 , 119 , 1031 , aberta-dorso
+55 , 55 , 576 , 193 , 56 , 55 , 574 , aberta-palma
+55 , 55 , 576 , 193 , 56 , 55 , 574 , aberta-palma
+55 , 55 , 576 , 193 , 56 , 55 , 574 , aberta-palma
+71 , 70 , 703 , 271 , 76 , 69 , 699 , aberta-palma
+71 , 70 , 703 , 271 , 76 , 69 , 699 , aberta-palma
+71 , 70 , 703 , 271 , 76 , 69 , 699 , aberta-palma
+57 , 50 , 799 , 309 , 65 , 47 , 796 , aberta-palma
+57 , 50 , 799 , 309 , 65 , 47 , 796 , aberta-palma
+57 , 50 , 799 , 309 , 65 , 47 , 796 , aberta-palma
+54 , 45 , 550 , 232 , 56 , 44 , 549 , aberta-palma
+54 , 45 , 550 , 232 , 56 , 44 , 549 , aberta-palma
+54 , 45 , 550 , 232 , 56 , 44 , 549 , aberta-palma
+63 , 76 , 655 , 122 , 67 , 73 , 656 , aberta-palma
+63 , 76 , 655 , 122 , 67 , 73 , 656 , aberta-palma
+63 , 76 , 655 , 122 , 67 , 73 , 656 , aberta-palma
+69 , 216 , 1190 , 157 , 75 , 214 , 1187 , aberta-palma
+69 , 216 , 1190 , 157 , 75 , 214 , 1187 , aberta-palma
+69 , 216 , 1190 , 157 , 75 , 214 , 1187 , aberta-palma
+69 , 181 , 1198 , 192 , 73 , 180 , 1195 , aberta-palma
+69 , 181 , 1198 , 192 , 73 , 180 , 1195 , aberta-palma
+69 , 181 , 1198 , 192 , 73 , 180 , 1195 , aberta-palma
+59 , 101 , 937 , 130 , 67 , 98 , 934 , aberta-palma
+59 , 101 , 937 , 130 , 67 , 98 , 934 , aberta-palma
+59 , 101 , 937 , 130 , 67 , 98 , 934 , aberta-palma
+59 , 87 , 703 , 121 , 66 , 83 , 703 , aberta-palma
+59 , 87 , 703 , 121 , 66 , 83 , 703 , aberta-palma
+59 , 87 , 703 , 121 , 66 , 83 , 703 , aberta-palma
+77 , 66 , 362 , 147 , 78 , 66 , 360 , fechada-dorso
+119 , 60 , 343 , 255 , 119 , 61 , 340 , fechada-dorso
+90 , 76 , 351 , 285 , 90 , 76 , 350 , fechada-dorso
+88 , 74 , 365 , 292 , 89 , 72 , 367 , fechada-dorso
+84 , 77 , 363 , 286 , 86 , 75 , 364 , fechada-dorso
+100 , 71 , 347 , 267 , 102 , 70 , 346 , fechada-dorso
+111 , 64 , 329 , 258 , 112 , 63 , 329 , fechada-dorso
+123 , 53 , 339 , 270 , 122 , 53 , 339 , fechada-dorso
+124 , 51 , 340 , 266 , 125 , 50 , 340 , fechada-dorso
+107 , 55 , 350 , 253 , 109 , 54 , 349 , fechada-dorso
+107 , 52 , 354 , 255 , 106 , 53 , 352 , fechada-dorso
+100 , 73 , 347 , 282 , 102 , 71 , 348 , fechada-dorso
+101 , 74 , 347 , 280 , 102 , 72 , 349 , fechada-dorso
+104 , 57 , 371 , 234 , 104 , 56 , 372 , fechada-dorso
+100 , 64 , 376 , 238 , 101 , 64 , 374 , fechada-dorso
+115 , 54 , 335 , 281 , 116 , 54 , 333 , fechada-dorso
+115 , 57 , 335 , 289 , 114 , 56 , 337 , fechada-dorso
+62 , 70 , 445 , 264 , 65 , 68 , 445 , fechada-dorso
+75 , 76 , 566 , 284 , 81 , 73 , 565 , fechada-dorso
+80 , 54 , 398 , 270 , 83 , 53 , 396 , fechada-dorso
+82 , 52 , 393 , 270 , 84 , 50 , 394 , fechada-dorso
+83 , 54 , 390 , 270 , 88 , 51 , 390 , fechada-dorso
+82 , 54 , 386 , 269 , 86 , 52 , 385 , fechada-dorso
+86 , 62 , 416 , 254 , 88 , 60 , 417 , fechada-dorso
+91 , 60 , 413 , 248 , 91 , 60 , 412 , fechada-dorso
+91 , 61 , 409 , 255 , 91 , 60 , 410 , fechada-dorso
